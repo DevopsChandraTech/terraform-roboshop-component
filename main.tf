@@ -2,11 +2,11 @@ resource "aws_instance" "main" {
   ami           = local.ami_id
   instance_type = "t3.micro"
   vpc_security_group_ids = [local.sg_id]
-  subnet_id = local.private_subnet_id
+  subnet_id = local.private_subnet_ids
   tags = merge(
     local.common_tags,
     {
-      Name = "${local.common_name_suffix}-catalogue" #roboshop-dev-catalogue
+      Name = "${local.common_name_suffix}-${var.component}" #roboshop-dev-catalogue
     }
   )
 }
